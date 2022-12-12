@@ -124,7 +124,7 @@ Dictionary의 Key, Value처럼 서로 상관관계가 있는 경우 의미가 �
 
 ### Stack의 동작
 
-![Untitled](%5BSwift%5D%20Generic%203a8ade277b0c4519a3f87bdeff8b4df5/Untitled.png)
+![stack](https://user-images.githubusercontent.com/77602040/207066410-ecbb23c0-f0ee-4635-a706-c4e9f3ca7908.png)
 
 1. 현재 스택에는 3개의 값이 있다.
 2. 네 번째 값은 스택의 맨 위에 push된다.
