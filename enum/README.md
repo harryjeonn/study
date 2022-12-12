@@ -84,9 +84,9 @@ default:
 
 열거형의 각 case에 custom type의 추가적인 정보를 저장할 수 있다.
 
-![barcord](/images/barcode.png)
+![barcode](https://user-images.githubusercontent.com/77602040/207065218-d5d8e934-36c0-42ac-9cbd-aa896cb2a794.png)
 
-![qr](/images/qrcode.png)
+![qrcode](https://user-images.githubusercontent.com/77602040/207065238-117ce780-6141-4197-adfe-fb4fa67eafdc.png)
 
 예를 들어 바코드가 위와 같이 4가지로 구분된 숫자로 이루어진 종류가 있거나, 2953개의 문자로 구성된 QR코드 형태로 이루어진 두 가지 종류가 있다면 이 바코드를 아래와 같은 열거형으로 정의할 수 있다.
 
