@@ -54,3 +54,20 @@ let result = numbers
     .filter { $0 % 2 == 0 } // 짝수 걸러내기
     .map { $0 * 5 } // 5 곱하기
     .reduce(0, +) // 모든 값 더하기
+
+let optionalNumbers = [1, nil, 3, nil, 4, 5]
+
+// MARK: - FlatMap
+let flatMapNumbers = optionalNumbers.flatMap { $0 }
+
+// MARK: - CompactMap
+let compactMapNumbers = optionalNumbers.compactMap { $0 }
+
+// MARK: - FlatMap vs CompactMap
+let twoDimensionalNumbers = [[1, nil, 3], [nil, 5, 7]]
+
+let flatMapTest = twoDimensionalNumbers.flatMap { $0 }
+let compactMapTest = twoDimensionalNumbers.compactMap { $0 }
+
+let optionalBindingFlatMapTest = twoDimensionalNumbers.flatMap { $0.flatMap { $0 } }
+let optionalBindingCompactMapTest = twoDimensionalNumbers.compactMap { $0.compactMap { $0 } }

@@ -209,3 +209,113 @@ let result = numbers
 
 // 50
 ```
+
+## FlatMap
+
+### 선언
+
+```swift
+func flatMap<ElementOfResult>(_ transform: (Self.Element) throws -> ElementOfResult?) rethrows -> [ElementOfResult]
+```
+
+`transform`은 컨테이너를 매개변수로 받아 컨테이너로 반환하는 클로저이다.
+
+`flatMap`의 역할은 아래와 같다.
+
+1. flatten하게, 단조롭게 만든다.
+2. nil을 제거한다.
+3. optional binding 해준다.
+
+### 예제
+
+```swift
+let optionalNumbers = [1, nil, 3, nil, 4, 5]
+
+let flatMapNumbers = optionalNumbers.flatMap { $0 }
+
+// [1, 3, 4, 5]
+```
+
+nil을 제거한 후 배열을 반환하는 것을 알 수있다.
+
+위와 같이 `flatMap`을 사용해보면
+
+`**'flatMap' is deprecated: Please use compactMap(_:) for the case where closure returns an optional value**`
+
+라는 경고문구를 확인할 수 있다. deprecated 되었으니 `compactMap`을 사용하라는데 `compactMap`에 대해 알아보자.
+
+## CompactMap
+
+### 선언
+
+```swift
+func compactMap<ElementOfResult>(_ transform: (Self.Element) throws -> ElementOfResult?) rethrows -> [ElementOfResult]
+```
+
+선언부는 `flatMap`과 같다.
+
+### 예제
+
+```swift
+let compactMapNumbers = optionalNumbers.compactMap { $0 }
+
+// [1, 3, 4, 5]
+```
+
+`flatMap`과 `compactMap`의 결과값은 같다. 그럼 두 함수의 차이점은 뭘까?
+
+## FlatMap vs CompactMap
+
+`flatMap`은 1차원 아래의 배열으로 반환하고 `compactMap`은 다차원 배열을 반환한다.
+
+이게 무슨소리인지 직접 코드를 작성해 확인해보자.
+
+### 예제1
+
+```swift
+let twoDimensionalNumbers = [[1, nil, 3], [nil, 5, 7]]
+
+let flatMapTest = twoDimensionalNumbers.flatMap { $0 }
+let compactMapTest = twoDimensionalNumbers.compactMap { $0 }
+
+// flatMap: [Optional(1), nil, Optional(3), nil, Optional(5), Optional(7)]
+// compactMap: [[Optional(1), nil, Optional(3)], [nil, Optional(5), Optional(7)]]
+```
+
+2차원 배열을 만들어서 각각 `flatMap`과 `compactMap`을 사용해봤다.
+
+1차원 아래의 배열을 반환하는 `flatMap`은 2차원 배열인 `twoDimensionalNumbers`를 1차원 배열으로 변환하여 반환했다.
+
+다차원 배열을 반환하는 `compactMap`은 2차원 배열 그대로 반환하는 것을 볼 수 있다.
+
+하지만 1차원 배열에서 됐던 optional binding과 nil제거가 되지 않았다.
+
+### 예제2
+
+다차원 배열을 1차원 아래의 배열로 만들면서 optional binding 및 nil제거를 하고싶다면?
+
+다차원 배열을 유지하면서 optional binding 및 nil제거를 하고싶다면 어떻게 해야할까?
+
+```swift
+let optionalBindingFlatMapTest = twoDimensionalNumbers.flatMap { $0.flatMap { $0 } }
+let optionalBindingCompactMapTest = twoDimensionalNumbers.compactMap { $0.compactMap { $0 } }
+
+// [1, 3, 5, 7]
+// [[1, 3], [5, 7]]
+```
+
+`Array.flatMap { $0.flatMap }`
+
+`Array.compactMap { $0.compactMap }`
+
+으로 할 수 있는 것을 알게됐다.
+
+가장 상위의 배열에서 optional binding과 nil제거를 하는 것으로 보인다.
+
+## 정리
+
+optional binding 및 nil 제거를 하고싶다면 `compactMap`
+
+추가로 1차원 아래의 배열로 만들고 싶다면 `flatMap`
+
+두 차이점을 알고 사용하는 것이 좋을 것 같다.
