@@ -14,4 +14,6 @@ GitHub뿐만 아니라 [Tistory](https://harryjeon.tistory.com/)에도 기록해
 
 [RxSwift(곰튀김님 강의)](https://github.com/harryjeonn/study/tree/main/RxSwift_In_4_Hours)
 
-[고차함수 (1) - map, filter, reduce](https://github.com/harryjeonn/study/tree/main/higher-order-function)
+[고차함수 - map, filter, reduce, flatMap, compactMap](https://github.com/harryjeonn/study/tree/main/higher-order-function)
+
+[Frame, Bounds](https://github.com/harryjeonn/study/tree/main/frame-bounds)
